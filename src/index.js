@@ -10,7 +10,7 @@ const store = createStore(movies);
 //   type: "ADD_MOVIES",
 //   movies: [{ name: "Superman" }],
 // });
-console.log("after state", store.getState());
+// console.log("after state", store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App store={store} />);

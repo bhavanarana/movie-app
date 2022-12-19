@@ -1,7 +1,3 @@
-// {
-//   type: "ADD_MOVIES";
-//   movies: [];
-// }
 //action type
 export const ADD_MOVIES = "ADD_MOVIES";
 //action creators
