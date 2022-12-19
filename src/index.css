@@ -172,6 +172,7 @@ body {
 .favourite-btn {
   background-color: #2185d0;
   color: #fff;
+  cursor: pointer;
 }
 .unfavourite-btn {
   background-color: #db2828;
