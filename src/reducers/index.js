@@ -71,13 +71,7 @@ const initialRootState = {
   movies: initialMoviesState,
   search: initialSearchState,
 };
-// export default function rootReducer(state = initialRootState, action) {
-//   return {
-//     movies: movies(state.movies, action),
-//     search: search(state.search, action),
-//   };
-// }
 export default combineReducers({
-  movies: movies,
+  movies,
   search, // shorthand of search: search
 });

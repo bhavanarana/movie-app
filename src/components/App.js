@@ -1,22 +1,16 @@
 import React from "react";
-import { data } from "../data";
+import { data as moviesList } from "../data";
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
 import { addMovies, setShowFavourites } from "../actions";
+import { StoreContext } from "../index";
 class App extends React.Component {
   componentDidMount() {
     const { store } = this.props;
     store.subscribe(() => {
       this.forceUpdate();
     });
-    //make api call
-    //dispatch action
-    // store.dispatch({
-    //   type: "ADD_MOVIES",
-    //   movies: data,
-    // });
-    store.dispatch(addMovies(data));
-    // console.log("State", this.props.store.getState());
+    store.dispatch(addMovies(moviesList));
   }
   isMovieFavourite = (movie) => {
     const { movies } = this.props.store.getState(); //{movies: {}, search: {}}
@@ -27,10 +21,6 @@ class App extends React.Component {
     }
     return false;
   };
-  // handleFavouritesTab = () => {
-  //   const { favourites } = this.props.store.getState();
-  //   console.log("favt", favourites);
-  // };
   onChangeTab = (val) => {
     this.props.store.dispatch(setShowFavourites(val));
   };
@@ -40,7 +30,7 @@ class App extends React.Component {
     const displayMovies = showFavourites ? favourites : list;
     return (
       <div className="App">
-        <Navbar dispatch={this.props.store.dispatch} search={search} />
+        <Navbar search={search} />
         <div className="main">
           <div className="tabs">
             <div
@@ -60,22 +50,31 @@ class App extends React.Component {
               Favourites
             </div>
           </div>
-          <div className="list">
-            {displayMovies.map((movie, index) => (
+          <div id="list">
+            {displayMovies.map((movie) => (
               <MovieCard
                 movie={movie}
-                key={`movies-${index}`}
+                key={movies.imdbID}
                 dispatch={this.props.store.dispatch}
                 isFavourite={this.isMovieFavourite(movie)} //true or false
               />
             ))}
+            {displayMovies.length === 0 ? (
+              <div className="no-movies">No movies to display</div>
+            ) : null}
           </div>
-          {displayMovies.length === 0 ? (
-            <div className="no-movies">No movies to display</div>
-          ) : null}
         </div>
       </div>
     );
   }
 }
-export default App;
+class AppWrapper extends React.Component {
+  render() {
+    return (
+      <StoreContext.Consumer>
+        {(store) => <App store={store} />}
+      </StoreContext.Consumer>
+    );
+  }
+}
+export default AppWrapper;
