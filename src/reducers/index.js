@@ -4,6 +4,7 @@ import {
   ADD_FAVOURITES,
   REMOVE_FAVOURITES,
   SET_SHOW_FAVOURITES,
+  ADD_SEARCH_RESULT,
 } from "../actions";
 const initialMoviesState = {
   list: [],
@@ -43,7 +44,15 @@ const initialSearchState = {
   result: {},
 };
 export function search(state = initialSearchState, action) {
-  return state;
+  switch (action.type) {
+    case ADD_SEARCH_RESULT:
+      return {
+        ...state,
+        result: action.movie,
+      };
+    default:
+      return state;
+  }
 }
 const initialRootState = {
   movies: initialMoviesState,
