@@ -1,4 +1,5 @@
-import React, { createContext } from "react";
+import React from "react";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
@@ -16,18 +17,18 @@ const logger =
     next(action);
   };
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
-export const StoreContext = createContext();
+// export const StoreContext = createContext();
 
-class Provider extends React.Component {
-  render() {
-    const { store } = this.props;
-    return (
-      <StoreContext.Provider value={store}>
-        {this.props.children}
-      </StoreContext.Provider>
-    );
-  }
-}
+// class Provider extends React.Component {
+//   render() {
+//     const { store } = this.props;
+//     return (
+//       <StoreContext.Provider value={store}>
+//         {this.props.children}
+//       </StoreContext.Provider>
+//     );
+//   }
+// }
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // pass store to provider componet
