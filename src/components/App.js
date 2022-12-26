@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
-import { addMovies, setShowFavourites } from "../actions";
+import { addMovies, setShowFavourites } from "../actions/actionCreator";
 import { data as moviesList } from "../data";
 
 class App extends React.Component {
@@ -81,7 +81,7 @@ class App extends React.Component {
 function callback(state) {
   return {
     movies: state.movies,
-    search: state.movies,
+    search: state.search,
   };
 }
 const connectedComponent = connect(callback)(App);

@@ -6,7 +6,7 @@ import {
   SET_SHOW_FAVOURITES,
   ADD_SEARCH_RESULT,
   ADD_MOVIE_TO_LIST,
-} from "../actions";
+} from "../actions/actionType";
 const initialMoviesState = {
   list: [],
   favourites: [],
