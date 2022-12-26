@@ -53,7 +53,7 @@ class Navbar extends React.Component {
     );
   }
 }
-mapStateToProps = ({ search }) => {
+const mapStateToProps = ({ search }) => {
   return {
     search,
   };
