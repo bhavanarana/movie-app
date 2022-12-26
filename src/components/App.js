@@ -67,22 +67,11 @@ class App extends React.Component {
     );
   }
 }
-
-// class AppWrapper extends React.Component {
-//   render() {
-//     return (
-//       <StoreContext.Consumer>
-//         {(store) => <App store={store} />}
-//       </StoreContext.Consumer>
-//     );
-//   }
-// }
-
-function callback(state) {
+const callback = (state) => {
   return {
     movies: state.movies,
     search: state.search,
   };
-}
+};
 const connectedComponent = connect(callback)(App);
 export default connectedComponent;
